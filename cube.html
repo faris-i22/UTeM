@@ -1,0 +1,73 @@
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<meta name="Description" content="MyProject is very fast">
+<meta name="theme-color" content="#000000"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="apple-touch-icon" href="img/logo-192.png">
+	
+</head>
+<body>
+
+
+
+<div id="app">
+
+  <p>
+   
+    <router-link to="/foo" class="nav-button">Go to Foo</router-link>
+    <router-link to="/bar" class="nav-button">Go to Bar</router-link>
+  
+  <br>
+  
+  <div>{{$route.name}}</div>
+  <div v-if="$route.name==foo">
+  This is page Foo
+  </div>
+  <div v-if="$route.name==bar">
+  This is page Bar
+  </div>
+  <div v-if="$route.name== notfound">
+  Sorry page not found
+  </div>
+  
+</div>
+
+
+
+
+<script>
+
+if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+            })
+        }
+		
+var app = new Vue({
+  el: '#app',
+  data: {
+  item:[],
+  total:0,
+	
+	
+  },
+ router: new VueRouter({
+	routes:[
+			{path: "/", redirect: "/foo" },
+			{path: "/foo", name: "foo" },
+			{path: "/bar", name: "bar" },
+			{path: "/notfound", name: "notfound" },
+			{path: "**", redirect: "/notfound" },
+			
+			]
+			})
+})
+</script>
+</body>
+</html>
